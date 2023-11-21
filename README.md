@@ -4,13 +4,13 @@
 
 ## Team
 
-Ezzeldin Ismail
-Stephen Guo
-Saad Mohy-Uddin Bhatti
-Ziyao Yin
-Xinyi Ye
-Jesse Zhang
-Awais Aziz
+- Ezzeldin Ismail
+- Stephen Guo
+- Saad Mohy-Uddin Bhatti
+- Ziyao Yin
+- Xinyi Ye
+- Jesse Zhang
+- Awais Aziz
 
 ## Motivation
 
