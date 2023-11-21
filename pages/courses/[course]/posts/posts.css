@@ -1,0 +1,10 @@
+.cut-text {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: pre-line;
+  height: 7em;
+}
+
+.discussion-content {
+  white-space: pre-wrap;
+}

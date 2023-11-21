@@ -1,0 +1,36 @@
+{
+  "dependencies": {
+    "@trpc/client": "^9.27.2",
+    "@trpc/next": "^9.27.2",
+    "@trpc/react": "^9.27.2",
+    "@trpc/server": "^9.27.2",
+    "bcryptjs": "^2.4.3",
+    "bootstrap": "^5.2.2",
+    "next": "^12.3.1",
+    "next-auth": "^4.12.3",
+    "react": "^18.2.0",
+    "react-bootstrap": "^2.5.0",
+    "react-dom": "^18.2.0",
+    "react-query": "^3.39.2",
+    "superjson": "^1.11.0",
+    "surrealdb.js": "^0.5.0",
+    "zod": "^3.19.1"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.2",
+    "@types/node": "^18.7.23",
+    "@types/react": "^18.0.21",
+    "eslint": "8.25.0",
+    "eslint-config-next": "12.3.1",
+    "typescript": "^4.8.3"
+  },
+  "name": "chub",
+  "scripts": {
+    "db": "docker kill surrealDB 2>/dev/null; docker run --rm --name surrealDB --detach -p 8000:8000 surrealdb/surrealdb:latest start --user root --pass root memory && npx ts-node database/surrealdb/init.ts && docker exec -it surrealDB /surreal sql --conn http://localhost:8000 --user root --pass root --ns CHub --db CHub && docker kill surrealDB",
+    "test": "tsc --noEmit && npx ts-node database/testing/SurrealDBtest.ts && npx ts-node utils/testing/upload.ts",
+    "dev": "next dev || ./node_modules/next/dist/bin/next dev",
+    "build": "next build || ./node_modules/next/dist/bin/next build",
+    "start": "next start || ./node_modules/next/dist/bin/next start",
+    "lint": "next lint || ./node_modules/next/dist/bin/next lint"
+  }
+}

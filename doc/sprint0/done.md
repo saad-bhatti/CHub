@@ -1,0 +1,11 @@
+# Definition of done
+ - All subtasks are completed
+ - The code is well written
+	- The code produces no errors
+	- All functions have a basic description
+	- Any automated tests must pass
+	- Manually end-to-end tested with no errors
+ - The code is commited and the commit has been assigned to the task on Jira
+ - A pull request has been made and one other person has reviewed the code
+ - The code has been merged into the dev branch
+ - The task is marked done on Jira

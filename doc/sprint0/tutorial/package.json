@@ -1,0 +1,33 @@
+{
+  "dependencies": {
+    "@trpc/client": "^9.27.2",
+    "@trpc/next": "^9.27.2",
+    "@trpc/react": "^9.27.2",
+    "@trpc/server": "^9.27.2",
+    "bootstrap": "^5.2.2",
+    "next": "^12.3.0",
+    "react": "^18.2.0",
+    "react-bootstrap": "^2.5.0",
+    "react-dom": "^18.2.0",
+    "react-query": "^3.39.2",
+    "zod": "^3.19.1"
+  },
+  "scripts": {
+    "dev": "$(dirname \"$0\")/node_modules/next/dist/bin/next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "startCommands": [
+    "npm i --save next react react-dom @trpc/client @trpc/server @trpc/react @trpc/next zod react-query@3",
+    "npm i --save-dev typescript @types/react @types/node",
+    "npm i -g typescript && tsc --init",
+    "mkdir pages && mkdir public && echo \"function HomePage(){return <div>Welcome to Next.js!</div>}export default HomePage\" >> pages/index.tsx",
+    "npm run dev"
+  ],
+  "devDependencies": {
+    "@types/node": "^18.7.18",
+    "@types/react": "^18.0.20",
+    "typescript": "^4.8.3"
+  }
+}
