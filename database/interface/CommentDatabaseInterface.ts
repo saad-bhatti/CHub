@@ -4,15 +4,9 @@ import {
   PostCommentMutableInputValidator,
   PostCommentValidator,
 } from "../../utils/types/PostComment";
-import {
-  DatabaseResponseValidator,
-  EmptyDatabaseResponseValidator,
-} from "../types";
+import { DatabaseResponseValidator, EmptyDatabaseResponseValidator } from "../types";
 
-const addComment = z
-  .function()
-  .args(PostCommentValidator)
-  .returns(EmptyDatabaseResponseValidator);
+const addComment = z.function().args(PostCommentValidator).returns(EmptyDatabaseResponseValidator);
 
 const getComment = z
   .function()

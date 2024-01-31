@@ -4,11 +4,7 @@ import {
   AnnouncementMutableInputValidator,
   AnnouncementValidator,
 } from "../../utils/types/Announcement";
-//import database from "../FakeDatabase";
-import {
-  DatabaseResponseValidator,
-  EmptyDatabaseResponseValidator,
-} from "../types";
+import { DatabaseResponseValidator, EmptyDatabaseResponseValidator } from "../types";
 
 const addAnnouncement = z
   .function()
@@ -37,38 +33,4 @@ export const AnnouncementDatabaseInterfaceMethods = {
   editAnnouncement: editAnnouncement,
 };
 export const AnnouncementDatabaseInterface = z.object(AnnouncementDatabaseInterfaceMethods);
-export type AnnouncementDatabaseInterface = z.infer<typeof AnnouncementDatabaseInterface>
-// export const FakeAnnouncementDatabaseAccessor: z.infer<
-//   typeof AnnouncementDatabaseInterface
-// > = {
-//   getAnnouncement: getAnnouncement.implement(async (ID) => {
-//     return Promise.resolve({
-//       success: true,
-//       data:
-//         database.announcements.filter((a) => a.announcementID === ID).at(0) ||
-//         null,
-//     });
-//   }),
-//   // Mutations
-//   addAnnouncement: addAnnouncement.implement((announcement) => {
-//     database.announcements.push(announcement);
-//     return Promise.resolve({ success: true });
-//   }),
-//   editAnnouncement: editAnnouncement.implement((ID, announcement) => {
-//     database.announcements = database.announcements.map(
-//       (databaseAnnouncement) => {
-//         if (databaseAnnouncement.announcementID === ID)
-//           databaseAnnouncement.update(announcement);
-//         return databaseAnnouncement;
-//       }
-//     );
-
-//     return Promise.resolve({ success: true });
-//   }),
-//   deleteAnnouncement: deleteAnnouncement.implement((ID) => {
-//     database.announcements = database.announcements.filter(
-//       (a) => a.announcementID !== ID
-//     );
-//     return Promise.resolve({ success: true });
-//   }),
-// };
+export type AnnouncementDatabaseInterface = z.infer<typeof AnnouncementDatabaseInterface>;

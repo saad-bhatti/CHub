@@ -1,39 +1,15 @@
-import {
-  UserDatabaseInterface,
-  //FakeUserDatabaseAccessor,
-} from "./UserDatabaseInterface";
-import {
-  CourseDatabaseInterface,
-  //FakeCourseDatabaseAccessor,
-} from "./CourseDatabaseInterface";
-import {
-  AnnouncementDatabaseInterface,
-  //FakeAnnouncementDatabaseAccessor,
-} from "./AnnouncementDatabaseInterface";
-import {
-  AssignmentDatabaseInterface,
-  //FakeAssignmentDatabaseAccessor,
-} from "./AssignmentDatabaseInterface";
-import { PostDatabaseInterface } from "./PostDatabaseInterface";
-import { CommentDatabaseInterface } from "./CommentDatabaseInterface";
 import { z } from "zod";
+import { AnnouncementDatabaseInterface } from "./AnnouncementDatabaseInterface";
+import { AssignmentDatabaseInterface } from "./AssignmentDatabaseInterface";
+import { CommentDatabaseInterface } from "./CommentDatabaseInterface";
+import { CourseDatabaseInterface } from "./CourseDatabaseInterface";
+import { PostDatabaseInterface } from "./PostDatabaseInterface";
+import { UserDatabaseInterface } from "./UserDatabaseInterface";
 
-// PATTERN: Facade, Strategy
-/* DATABASEINTERBASE DECLARATION */
-export const DatabaseInterface = UserDatabaseInterface
-  .merge(CourseDatabaseInterface)
+export const DatabaseInterface = UserDatabaseInterface.merge(CourseDatabaseInterface)
   .merge(AnnouncementDatabaseInterface)
   .merge(AssignmentDatabaseInterface)
   .merge(PostDatabaseInterface)
   .merge(CommentDatabaseInterface);
 
-export type DatabaseInterface = z.infer<typeof DatabaseInterface>
-/* DATABASE QUERY IMPLEMENTATIONS */
-// const FakeDatabaseAccessor = {
-//   ...FakeAnnouncementDatabaseAccessor,
-//   ...FakeUserDatabaseAccessor,
-//   ...FakeCourseDatabaseAccessor,
-//   ...FakeAssignmentDatabaseAccessor,
-// };
-
-// export default FakeDatabaseAccessor;
+export type DatabaseInterface = z.infer<typeof DatabaseInterface>;

@@ -1,29 +1,16 @@
 import { z } from "zod";
-import {
-  PostIdValidator,
-  PostMutableInputValidator,
-  PostValidator,
-} from "../../utils/types/Post";
+import { PostIdValidator, PostMutableInputValidator, PostValidator } from "../../utils/types/Post";
 import { PostCommentValidator } from "../../utils/types/PostComment";
-import {
-  DatabaseResponseValidator,
-  EmptyDatabaseResponseValidator,
-} from "../types";
+import { DatabaseResponseValidator, EmptyDatabaseResponseValidator } from "../types";
 
-const addPost = z
-  .function()
-  .args(PostValidator)
-  .returns(EmptyDatabaseResponseValidator);
+const addPost = z.function().args(PostValidator).returns(EmptyDatabaseResponseValidator);
 
 const getPost = z
   .function()
   .args(PostIdValidator)
   .returns(DatabaseResponseValidator(PostValidator.nullable()));
 
-const deletePost = z
-  .function()
-  .args(PostIdValidator)
-  .returns(EmptyDatabaseResponseValidator);
+const deletePost = z.function().args(PostIdValidator).returns(EmptyDatabaseResponseValidator);
 
 const editPost = z
   .function()
@@ -35,7 +22,6 @@ const getPostComments = z
   .args(PostIdValidator)
   .returns(DatabaseResponseValidator(PostCommentValidator.array()));
 
-
 export const PostDatabaseInterfaceMethods = {
   addPost,
   getPost,
@@ -45,4 +31,4 @@ export const PostDatabaseInterfaceMethods = {
 };
 
 export const PostDatabaseInterface = z.object(PostDatabaseInterfaceMethods);
-export type PostDatabaseInterface = z.infer<typeof PostDatabaseInterface>
+export type PostDatabaseInterface = z.infer<typeof PostDatabaseInterface>;
