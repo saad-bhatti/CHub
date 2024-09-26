@@ -1,5 +1,5 @@
-import { z } from "zod";
-import { Post, PostIdValidator } from "../../../utils/types/Post";
+import { z } from 'zod'
+import { PostIdValidator } from '../../../utils/types/Post'
 import {
   PostComment,
   PostCommentContentValidator,
@@ -7,18 +7,11 @@ import {
   PostCommentEndorsementValidator,
   PostCommentIdValidator,
   PostCommentMutableInputValidator,
-  PostCommentPermanentAttributes,
   PostCommentPinnedValidator,
-  PostCommentResolvedValidator,
-} from "../../../utils/types/PostComment";
-import { UserIdValidator } from "../../../utils/types/User";
-import {
-  CommentTable,
-  getRecord,
-  PostTable,
-  SurrealIdValidator,
-  UserTable,
-} from "../utils";
+  PostCommentResolvedValidator
+} from '../../../utils/types/PostComment'
+import { UserIdValidator } from '../../../utils/types/User'
+import { CommentTable, getRecord, PostTable, SurrealIdValidator, UserTable } from '../utils'
 
 export const SurrealComment = z.object({
   id: SurrealIdValidator(CommentTable, PostCommentIdValidator),
@@ -28,17 +21,17 @@ export const SurrealComment = z.object({
   pinned: PostCommentPinnedValidator,
   resolved: PostCommentResolvedValidator,
   endorsed: PostCommentEndorsementValidator,
-  postId: SurrealIdValidator(PostTable, PostIdValidator),
-});
+  postId: SurrealIdValidator(PostTable, PostIdValidator)
+})
 
 export const MutableSurrealComment = SurrealComment.omit({
-  ...PostCommentPermanentAttributes,
-  owner: PostCommentPermanentAttributes.ownerId,
-});
+  id: true,
+  owner: true,
+  date: true,
+  postId: true
+})
 
-export function CommentAsRecord(
-  comment: PostComment
-): z.infer<typeof SurrealComment> {
+export function CommentAsRecord(comment: PostComment): z.infer<typeof SurrealComment> {
   return SurrealComment.parse({
     id: getRecord(CommentTable, comment.id),
     owner: getRecord(UserTable, comment.ownerId),
@@ -47,8 +40,8 @@ export function CommentAsRecord(
     pinned: comment.pinned,
     resolved: comment.resolved,
     postId: getRecord(PostTable, comment.postId),
-    endorsed: comment.endorsement,
-  });
+    endorsed: comment.endorsement
+  })
 }
 
 export function MutableCommentAsRecord(
@@ -58,13 +51,11 @@ export function MutableCommentAsRecord(
     pinned: comment.pinned,
     resolved: comment.resolved,
     endorsed: comment.endorsement,
-    content: comment.content,
-  });
+    content: comment.content
+  })
 }
 
-export function RecordAsComment(
-  record: z.infer<typeof SurrealComment>
-): PostComment {
+export function RecordAsComment(record: z.infer<typeof SurrealComment>): PostComment {
   return new PostComment({
     id: record.id.substr(CommentTable.length + 1),
     ownerId: record.owner.substr(UserTable.length + 1),
@@ -73,6 +64,6 @@ export function RecordAsComment(
     endorsement: record.endorsed,
     pinned: record.pinned,
     postId: record.postId.substr(PostTable.length + 1),
-    resolved: record.resolved,
-  });
+    resolved: record.resolved
+  })
 }

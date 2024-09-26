@@ -26,7 +26,7 @@
   },
   "name": "chub",
   "scripts": {
-    "db": "docker kill surrealDB 2>/dev/null; docker run --rm --name surrealDB --detach -p 8000:8000 surrealdb/surrealdb:latest start --user root --pass root memory && npx ts-node database/surrealdb/init.ts && docker exec -it surrealDB /surreal sql --conn http://localhost:8000 --user root --pass root --ns CHub --db CHub && docker kill surrealDB",
+    "db": "docker kill surrealDB 2>/dev/null; docker run --rm --name surrealDB --detach -p 8000:8000 surrealdb/surrealdb:1.0.0-beta.8 start --user root --pass root memory && npx ts-node database/surrealdb/init.ts && docker exec -it surrealDB /surreal sql --conn http://localhost:8000 --user root --pass root --ns CHub --db CHub && docker kill surrealDB",
     "test": "tsc --noEmit && npx ts-node database/testing/SurrealDBtest.ts && npx ts-node utils/testing/upload.ts",
     "dev": "next dev || ./node_modules/next/dist/bin/next dev",
     "build": "next build || ./node_modules/next/dist/bin/next build",
